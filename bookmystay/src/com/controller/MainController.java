@@ -14,10 +14,10 @@ public class MainController {
     private final CustomerController customerController;
     private final Scanner sc;
 
-    public MainController(AuthService authService, InventoryService inventoryService, SearchService searchService,Scanner scanner) {
+    public MainController(AuthService authService, InventoryService inventoryService, SearchService searchService,BookingQueueService bookingQueueService,Scanner scanner) {
         this.authService = authService;
-        this.adminController = new AdminController(inventoryService, scanner);
-        this.customerController = new CustomerController(searchService, scanner);
+        this.adminController = new AdminController(inventoryService,bookingQueueService, scanner);
+        this.customerController = new CustomerController(searchService,bookingQueueService, scanner); 
         this.sc = scanner;
     }
 

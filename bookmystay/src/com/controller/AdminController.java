@@ -11,11 +11,13 @@ import java.util.Scanner;
 public class AdminController {
 
     private final InventoryService inventoryService;
+    private final BookingQueueService bookingQueueService;
     private final Scanner sc;
 
     //inventory services loading
-    public AdminController(InventoryService inventoryService, Scanner scanner) {
+    public AdminController(InventoryService inventoryService,BookingQueueService bookingQueueService,Scanner scanner) {
         this.inventoryService = inventoryService;
+        this.bookingQueueService = bookingQueueService;
         this.sc = scanner; 
     }
 
@@ -40,9 +42,15 @@ public class AdminController {
                         handleUpdatePrice();
                         break;
                     case "4":
-                        inventoryService.displayRealTimeAvailabilty();
+                        inventoryService.displayRealTimeAvailabilty(); //available rooms
                         break;
                     case "5":
+                    	bookingQueueService.displayQueue(); //show booking
+                    	break;
+                    case "6":
+                    	bookingQueueService.processingNextBooking(); //processing booking
+                    	break;
+                    case "7":
                         running = false;
                         System.out.println("Logging out Admin");
                         break;
@@ -64,7 +72,9 @@ public class AdminController {
         System.out.println("2. Update Room Inventory Count");
         System.out.println("3. Update Room Price");
         System.out.println("4. View Real-Time Availability");
-        System.out.println("5. Logout");
+        System.out.println("5. View Booking Requests");
+        System.out.println("6. Process Next Booking Request");
+        System.out.println("7. Logout");
         System.out.print("Select an option: ");
     }
 
