@@ -1,17 +1,17 @@
 package com.controller;
 
 import com.model.User;
-import com.service.InventoryService;
-import java.util.Scanner;
+import com.service.*;
 
+import java.util.Scanner;
 
 // customer controller
 public class CustomerController {
-    private final InventoryService inventoryService; //object for inventory service.
+    private final SearchService searchService; //object for inventory service.
     private final Scanner sc;
 
-    public CustomerController(InventoryService inventoryService, Scanner sc) {
-        this.inventoryService = inventoryService;
+    public CustomerController(SearchService searchService, Scanner sc) {
+        this.searchService = searchService;
         this.sc = sc;
     }
 
@@ -21,7 +21,7 @@ public class CustomerController {
         
         while (running) {
             System.out.println("\n=== Customer Menu ===");
-            System.out.println("1. View Available Rooms");
+            System.out.println("1. Search Available Rooms");
             System.out.println("2. Logout");
             System.out.print("Select an option: ");
             
@@ -29,7 +29,7 @@ public class CustomerController {
 
             switch (choice) {
                 case "1":
-                    inventoryService.displayRealTimeAvailabilty(); //current available rooms
+                	searchService.searchAvailableRooms(); //search available rooms
                     break;
                 case "2":
                     running = false;
