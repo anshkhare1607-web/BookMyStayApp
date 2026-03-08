@@ -84,10 +84,10 @@ public class AdminController {
         String type = sc.nextLine();
         
         System.out.print("Enter Initial Available Count: ");
-        int count = sc.nextInt();
+        int count = Integer.parseInt(sc.nextLine());
         
         System.out.print("Enter Price Per Night: ");
-        double price = sc.nextDouble();
+        double price = Double.parseDouble(sc.nextLine());
         
         inventoryService.setupRoomType(type, count, price);
     }
@@ -99,7 +99,7 @@ public class AdminController {
         String type = sc.nextLine();
         
         System.out.print("Enter new Available Count: ");
-        int count = sc.nextInt();
+        int count = Integer.parseInt(sc.nextLine());
         
         inventoryService.updateInventoryCount(type, count);
     }
@@ -110,7 +110,7 @@ public class AdminController {
         String type = sc.nextLine();
         
         System.out.print("Enter new Price Per Night: ");
-        double price = sc.nextDouble();
+        double price = Double.parseDouble(sc.nextLine());
         
         inventoryService.updateInventoryPrice(type, price);
     }

@@ -40,10 +40,15 @@ public class BookingQueueServiceImpl implements BookingQueueService{
 		Integer availableCount = inventoryRepository.getAvailableCount(roomType);
 
 		if (availableCount != null && availableCount > 0) {
-			inventoryRepository.updateRoomCount(roomType, availableCount - 1);
-			System.out.println("Processed: Booking confirmed for user '" + request.getUsername() + "' for room '" + roomType);
+			String roomId = roomType.substring(0,3).toUpperCase()+"-"+UUID.randomUUID().toString().substring(0,4);
+			if(inventoryRepository.allocatedRoomId(roomType,roomId)) {
+				inventoryRepository.updateRoomCount(roomType, availableCount - 1);
+				request.setAllocatedRoomId(roomId);
+				System.out.println("Processed: Booking confirmed for user '" + request.getUsername() + "' Assigned room Id :" + roomId);
+			}
+			
 		} else {
-			System.out.println("Processed: Booking failed for user '" + request.getUsername() + "'. Room '" + roomType + "' is out of inventory");
+			System.out.println("Processed: Booking failed for user '" + request.getUsername() + "'. Room Type '" + roomType + "' is out of inventory");
 		}
 	}
 

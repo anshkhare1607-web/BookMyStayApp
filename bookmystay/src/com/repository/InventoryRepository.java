@@ -1,5 +1,5 @@
 package com.repository;
-import java.util.Map;
+import java.util.*;
 
 //Interface for creating different inventory methods
 
@@ -12,6 +12,8 @@ public interface InventoryRepository {
 	Double getRoomPrice(String roomType);
 	Map<String, Double> getAllRoomPrices();
 	Map<String, Integer> getAllRoomCounts(); 
+	boolean allocatedRoomId(String roomType,String roomId);
+	Set<String> getAssignedRooms(String roomType);
 
 	boolean roomTypeExists(String roomType); 
 

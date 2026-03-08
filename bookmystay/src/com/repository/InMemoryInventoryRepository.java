@@ -7,11 +7,13 @@ public class InMemoryInventoryRepository implements InventoryRepository {
     
     private final Map<String, Integer> roomCounts = new HashMap<>();
     private final Map<String, Double> roomPrices = new HashMap<>();
+    private final Map<String,Set<String>> assignedRooms = new HashMap<>();
 
     //Override
     public void addRoomType(String roomType, int count, double price) {
         roomCounts.put(roomType, count);
         roomPrices.put(roomType, price);
+        assignedRooms.putIfAbsent(roomType, new HashSet<>());
     }
 
     //Override
@@ -48,4 +50,31 @@ public class InMemoryInventoryRepository implements InventoryRepository {
     public boolean roomTypeExists(String roomType) {
         return roomCounts.containsKey(roomType);
     }
+    
+    //Override
+    public boolean allocatedRoomId(String roomType,String roomId) {
+    	Set<String> rooms = assignedRooms.getOrDefault(roomType, new HashSet<>());
+    	//preventing duplicates
+    	if(rooms.contains(roomId)) {
+    		return false;
+    	}
+    	rooms.add(roomId);
+    	assignedRooms.put(roomType, rooms);
+    	return true;
+    	
+    }
+    
+    //Override
+    public Set<String> getAssignedRooms(String roomType){
+    	return Collections.unmodifiableSet(assignedRooms.getOrDefault(roomType, new HashSet<>()));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

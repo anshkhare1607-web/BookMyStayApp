@@ -1,8 +1,8 @@
 /*
- * Use Case 02 : Booking Request from Customers on the first come first serve basis
+ * Use Case 04 : Reservation Confirmation & Room Allocation
  * 
  * @author : Developer
- * version : 3.0
+ * version : 4.0
  */
 package com.main;
 
