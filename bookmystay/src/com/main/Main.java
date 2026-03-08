@@ -1,8 +1,8 @@
 /*
- * Use Case 04 : Reservation Confirmation & Room Allocation
+ * Use Case 05 : Add-On Service Selection
  * 
  * @author : Developer
- * version : 4.0
+ * version : 5.0
  */
 package com.main;
 
@@ -24,9 +24,12 @@ public class Main {
 		
 		BookingRepository bookingRepo = new InMemoryBookingRepository(); //Booking repo
 		BookingQueueService bookingQueueService =  new BookingQueueServiceImpl(bookingRepo,inventoryRepo); //Booking service
+		
+		AddOnRepository addOnRepo = new InMemoryAddOnRepository(); // Add on service repo
+		AddOnManagerService addOnManagerService = new AddOnManagerServiceImpl(addOnRepo); // Add on service 
 
 		Scanner sc = new Scanner(System.in);
-		MainController app = new MainController(authService, inventoryService, searchService,bookingQueueService, sc);
+		MainController app = new MainController(authService, inventoryService, searchService,bookingQueueService,addOnManagerService, sc);
 		app.start(); //App starting
 
 	}
