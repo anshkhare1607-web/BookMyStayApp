@@ -9,10 +9,12 @@ public class BookingQueueServiceImpl implements BookingQueueService{
 
 	private final BookingRepository bookingRepository;
 	private final InventoryRepository inventoryRepository;
+	private final ReportingService reportingService;
 
-	public BookingQueueServiceImpl(BookingRepository bookingRepository, InventoryRepository inventoryRepository) {
+	public BookingQueueServiceImpl(BookingRepository bookingRepository, InventoryRepository inventoryRepository,ReportingService reportingService) {
 		this.bookingRepository = bookingRepository;
 		this.inventoryRepository = inventoryRepository;
+		this.reportingService = reportingService;
 	}
 
 

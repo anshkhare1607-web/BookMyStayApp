@@ -12,12 +12,15 @@ public class AdminController {
 
     private final InventoryService inventoryService;
     private final BookingQueueService bookingQueueService;
+    private final ReportingService reportingService;
     private final Scanner sc;
 
     //inventory services loading
-    public AdminController(InventoryService inventoryService,BookingQueueService bookingQueueService,Scanner scanner) {
+    public AdminController(InventoryService inventoryService,BookingQueueService bookingQueueService,
+    		ReportingService reportingService,Scanner scanner) {
         this.inventoryService = inventoryService;
         this.bookingQueueService = bookingQueueService;
+        this.reportingService = reportingService;
         this.sc = scanner; 
     }
 
@@ -51,6 +54,9 @@ public class AdminController {
                     	bookingQueueService.processingNextBooking(); //processing booking
                     	break;
                     case "7":
+                    	reportingService.generateBookingReport();
+                    	break;
+                    case "8":
                         running = false;
                         System.out.println("Logging out Admin");
                         break;
@@ -74,7 +80,8 @@ public class AdminController {
         System.out.println("4. View Real-Time Availability");
         System.out.println("5. View Booking Requests");
         System.out.println("6. Process Next Booking Request");
-        System.out.println("7. Logout");
+        System.out.println("7. View Booking History");
+        System.out.println("8. Logout");
         System.out.print("Select an option: ");
     }
 
